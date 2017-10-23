@@ -46,6 +46,7 @@ namespace std {} using namespace std;
 #include <string>
 #include <popt.h>
 #include <signal.h>
+#include <libgen.h> 
 
 #include "common.h"
 #include "Log.h"
@@ -285,7 +286,7 @@ void help(poptContext &context)
             PATTERN_LOOKUP[Job::PATTERN_USER_DEFINED],
             PATTERN_LOOKUP[Job::PATTERN_USER_DEFINED],
             PATTERN_LOOKUP[DEFAULT_PATTERN]);
-   fprintf(stdout, outStr);
+   fprintf(stdout, "%s", outStr);
 
    fprintf(stdout, "\nReport bugs to Andrew Patterson <andrew.patterson@hp.com>.\n");
 }
@@ -1399,8 +1400,8 @@ void run(operation_enum operation)
          
          if (gIterationsToDo == 0 || 
              gCurrentIteration < gIterationsToDo ||
-             gCurrentIteration == gIterationsToDo && 
-             operation == OPERATION_READ_AFTER_WRITE)
+             (gCurrentIteration == gIterationsToDo && 
+	      operation == OPERATION_READ_AFTER_WRITE))
          {
             gDisplay->nextJob();
          }

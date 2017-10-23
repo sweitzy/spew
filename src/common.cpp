@@ -30,7 +30,9 @@ namespace std {} using namespace std;
 #include <stdarg.h>
 #include <unistd.h>
 #include <math.h>
+#ifdef HAVE_MOUNT_CHECK
 #include <mntent.h>
+#endif
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <cstring>
